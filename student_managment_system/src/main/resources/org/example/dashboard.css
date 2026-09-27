@@ -1,0 +1,210 @@
+.app-root {
+    -fx-background-color: #f2f5f3;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.sidebar {
+    -fx-background-color: #172d29;
+}
+
+.brand-title {
+    -fx-text-fill: #f3f6f2;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.brand-caption, .sidebar-section, .sidebar-note-title {
+    -fx-text-fill: #91a89d;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-section {
+    -fx-padding: 16 0 2 4;
+}
+
+.nav-selected {
+    -fx-alignment: center-left;
+    -fx-background-color: #29443d;
+    -fx-background-radius: 5;
+    -fx-text-fill: #f4f6f1;
+    -fx-font-size: 13px;
+    -fx-padding: 11 12;
+}
+
+.sidebar-note {
+    -fx-border-color: #355047 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 17 4 0 4;
+}
+
+.sidebar-note-copy {
+    -fx-text-fill: #b1c0b8;
+    -fx-font-size: 11px;
+}
+
+.logout-button {
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-text-fill: #d4dfd8;
+    -fx-font-size: 12px;
+    -fx-padding: 10 12;
+}
+
+.logout-button:hover, .secondary-button:hover {
+    -fx-background-color: #e8eee9;
+}
+
+.main-content {
+    -fx-background-color: #f2f5f3;
+}
+
+.eyebrow, .stat-label {
+    -fx-text-fill: #78877e;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.page-title {
+    -fx-text-fill: #20332d;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle, .footer-note {
+    -fx-text-fill: #78877e;
+    -fx-font-size: 12px;
+}
+
+.stat-panel {
+    -fx-background-color: white;
+    -fx-border-color: #e2e9e4;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 16 18;
+    -fx-min-height: 92;
+}
+
+.stat-value {
+    -fx-text-fill: #20332d;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.green-number {
+    -fx-text-fill: #297a57;
+}
+
+.orange-number {
+    -fx-text-fill: #bd6d32;
+}
+
+.search-field {
+    -fx-background-color: white;
+    -fx-border-color: #dce5df;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 9 11;
+    -fx-font-size: 12px;
+}
+
+.primary-button, .secondary-button, .danger-button {
+    -fx-background-radius: 5;
+    -fx-padding: 9 13;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.primary-button {
+    -fx-background-color: #267653;
+    -fx-text-fill: white;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1f6546;
+}
+
+.secondary-button {
+    -fx-background-color: white;
+    -fx-border-color: #dce5df;
+    -fx-border-radius: 5;
+    -fx-text-fill: #34463d;
+}
+
+.danger-button {
+    -fx-background-color: #fff;
+    -fx-border-color: #edd8d3;
+    -fx-border-radius: 5;
+    -fx-text-fill: #a54437;
+}
+
+.danger-button:hover {
+    -fx-background-color: #fff2ef;
+}
+
+.student-table {
+    -fx-background-color: white;
+    -fx-border-color: #e1e8e3;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-table-cell-border-color: #edf1ee;
+    -fx-padding: 4;
+}
+
+.student-table .column-header-background {
+    -fx-background-color: #f7f9f7;
+}
+
+.student-table .column-header, .student-table .filler {
+    -fx-background-color: #f7f9f7;
+    -fx-size: 40px;
+    -fx-border-color: transparent transparent #e4ebe6 transparent;
+}
+
+.student-table .column-header .label {
+    -fx-text-fill: #64746a;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+.student-table .table-cell {
+    -fx-padding: 11 8;
+    -fx-font-size: 11px;
+    -fx-text-fill: #35473d;
+}
+
+.student-table .table-row-cell:filled:selected {
+    -fx-background-color: #e2f0e8;
+}
+
+.student-table .table-row-cell:filled:selected .text {
+    -fx-fill: #203d2e;
+}
+
+.empty-state, .status-text {
+    -fx-text-fill: #77867d;
+    -fx-font-size: 11px;
+}
+
+.success-text {
+    -fx-text-fill: #24734f;
+}
+
+.error-text {
+    -fx-text-fill: #b13f35;
+}
+
+.dialog-hint {
+    -fx-text-fill: #77867d;
+    -fx-font-size: 11px;
+}
+
+.dialog-pane {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.dialog-pane .content.label {
+    -fx-padding: 4;
+}

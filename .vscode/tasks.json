@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Student Management System (JavaFX)",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"-f",
+				"${workspaceFolder}/student_managment_system/pom.xml",
+				"javafx:run"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
