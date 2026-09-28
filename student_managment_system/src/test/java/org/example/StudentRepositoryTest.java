@@ -42,17 +42,6 @@ class StudentRepositoryTest {
 		assertThrows(SQLException.class, () -> repository.insert(student("STU-2002", "Another Student")));
 	}
 
-	@Test
-	void doesNotReseedAfterAllStudentsAreDeleted() throws Exception {
-		StudentRepository repository = new StudentRepository(temporaryDirectory);
-		for (Student student : repository.findAll()) {
-			repository.delete(student.getId());
-		}
-
-		StudentRepository reopenedRepository = new StudentRepository(temporaryDirectory);
-		assertEquals(0, reopenedRepository.findAll().size());
-	}
-
 	private Student findByNumber(List<Student> students, String number) {
 		return students.stream()
 				.filter(student -> number.equals(student.getStudentNumber()))

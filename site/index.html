@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f1">
+  <title>Students | Student Management System</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="./" aria-label="Student Management System home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-name">Student<br>Management</span>
+      </a>
+      <div class="nav-caption">WORKSPACE</div>
+      <a class="nav-link active" href="#students" aria-current="page">
+        <span class="nav-marker" aria-hidden="true"></span>
+        Students
+      </a>
+      <div class="sidebar-foot">
+        <span class="storage-dot" aria-hidden="true"></span>
+        <span>Saved in this browser</span>
+      </div>
+    </aside>
+
+    <main class="main-content" id="students">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">STUDENT DIRECTORY</p>
+          <h1>Students</h1>
+          <p class="page-subtitle">Keep your student records clear and up to date.</p>
+        </div>
+        <button class="button button-primary" id="add-student-button" type="button">
+          <span class="button-plus" aria-hidden="true">+</span>
+          Add student
+        </button>
+      </header>
+
+      <section class="stats" aria-label="Student totals">
+        <article class="stat stat-total">
+          <span class="stat-label">Total students</span>
+          <strong id="total-count">0</strong>
+          <span class="stat-note">Across all statuses</span>
+        </article>
+        <article class="stat stat-enrolled">
+          <span class="stat-label">Enrolled</span>
+          <strong id="enrolled-count">0</strong>
+          <span class="stat-note">Currently studying</span>
+        </article>
+        <article class="stat stat-graduated">
+          <span class="stat-label">Graduated</span>
+          <strong id="graduated-count">0</strong>
+          <span class="stat-note">Completed a course</span>
+        </article>
+      </section>
+
+      <section class="directory" aria-labelledby="directory-title">
+        <div class="directory-heading">
+          <div>
+            <h2 id="directory-title">Student records</h2>
+            <p id="result-count" class="result-count">0 records</p>
+          </div>
+          <button class="button button-secondary" id="export-button" type="button">Export CSV</button>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <span class="visually-hidden">Search students</span>
+            <span class="search-icon" aria-hidden="true"></span>
+            <input id="search-input" type="search" placeholder="Search name, ID, course..." autocomplete="off">
+          </label>
+          <label class="filter-control">
+            <span class="visually-hidden">Filter by status</span>
+            <select id="status-filter">
+              <option value="All">All statuses</option>
+              <option value="Enrolled">Enrolled</option>
+              <option value="Graduated">Graduated</option>
+              <option value="On leave">On leave</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Student</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Course</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="student-rows"></tbody>
+          </table>
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-mark" aria-hidden="true">—</span>
+            <h3>No students found</h3>
+            <p>Try another search or add a student record.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-foot">Browser records are private to this device and do not sync with the Java desktop app.</footer>
+    </main>
+  </div>
+
+  <dialog class="student-dialog" id="student-dialog" aria-labelledby="dialog-title">
+    <form id="student-form">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">STUDENT RECORD</p>
+          <h2 id="dialog-title">Add student</h2>
+        </div>
+        <button class="close-button" id="close-dialog-button" type="button" aria-label="Close dialog">×</button>
+      </div>
+      <input id="record-id" name="recordId" type="hidden">
+      <div class="form-grid">
+        <label>Student ID
+          <input name="studentNumber" required maxlength="32" placeholder="STU-1004">
+        </label>
+        <label>Full name
+          <input name="fullName" required maxlength="100" placeholder="First and last name">
+        </label>
+        <label>Email
+          <input name="email" type="email" required maxlength="160" placeholder="name@example.com">
+        </label>
+        <label>Phone
+          <input name="phone" type="tel" required maxlength="40" placeholder="555-0104">
+        </label>
+        <label>Course
+          <input name="course" required maxlength="100" placeholder="Computer Science">
+        </label>
+        <label>Status
+          <select name="status" required>
+            <option>Enrolled</option>
+            <option>Graduated</option>
+            <option>On leave</option>
+          </select>
+        </label>
+      </div>
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="button button-secondary" id="cancel-dialog-button" type="button">Cancel</button>
+        <button class="button button-primary" type="submit">Save student</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
