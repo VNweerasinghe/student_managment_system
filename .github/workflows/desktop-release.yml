@@ -1,0 +1,84 @@
+name: Package desktop app
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+      - name: Build and collect runtime dependencies
+        run: mvn --batch-mode --no-transfer-progress -f student_managment_system/pom.xml clean verify org.apache.maven.plugins:maven-dependency-plugin:3.8.1:copy-dependencies "-DincludeScope=runtime" "-DoutputDirectory=target/package-input"
+      - name: Package Windows app
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $project = "student_managment_system"
+          $inputDir = Join-Path $project "target/package-input"
+          Copy-Item (Join-Path $project "target/student_managment_system-1.0-SNAPSHOT.jar") $inputDir
+          $outputDir = Join-Path $project "target/desktop-package"
+          jpackage --type app-image --name StudentManagementSystem --dest $outputDir --input $inputDir --main-jar student_managment_system-1.0-SNAPSHOT.jar --main-class org.example.Main --java-options "--enable-native-access=ALL-UNNAMED,javafx.graphics"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          tar.exe -a -c -f StudentManagementSystem-Windows-x64.zip -C $outputDir StudentManagementSystem
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Package Linux and macOS apps
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          project="student_managment_system"
+          input_dir="$project/target/package-input"
+          cp "$project/target/student_managment_system-1.0-SNAPSHOT.jar" "$input_dir/"
+          output_dir="$project/target/desktop-package"
+          jpackage --type app-image --name StudentManagementSystem --dest "$output_dir" --input "$input_dir" --main-jar student_managment_system-1.0-SNAPSHOT.jar --main-class org.example.Main --java-options "--enable-native-access=ALL-UNNAMED,javafx.graphics"
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            app_image="StudentManagementSystem.app"
+          else
+            app_image="StudentManagementSystem"
+          fi
+          archive="StudentManagementSystem-${RUNNER_OS}-${RUNNER_ARCH}.zip"
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            ditto -c -k --sequesterRsrc --keepParent "$output_dir/$app_image" "$GITHUB_WORKSPACE/$archive"
+          else
+            (cd "$output_dir" && zip -r "$GITHUB_WORKSPACE/$archive" "$app_image")
+          fi
+      - name: Upload platform package
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-${{ runner.os }}-${{ runner.arch }}
+          path: StudentManagementSystem-*.zip
+          if-no-files-found: error
+
+  release:
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download platform packages
+        uses: actions/download-artifact@v4
+        with:
+          pattern: desktop-*
+          path: release-assets
+          merge-multiple: true
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" release-assets/*.zip --title "Student Management System $GITHUB_REF_NAME" --generate-notes

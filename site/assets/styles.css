@@ -261,6 +261,22 @@ tbody tr:hover { background: #fbfcfa; }
 .empty-state p { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
 .page-foot { padding: 15px 2px 0; color: #7c8780; font-size: 10px; }
 
+.desktop-download {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.88);
+}
+.desktop-download p { margin: 0; }
+.desktop-download p + p { margin-top: 5px; color: var(--muted); font-size: 12px; }
+.desktop-download a { flex-shrink: 0; text-decoration: none; }
+.desktop-download a:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
 .student-dialog { width: min(540px, calc(100% - 28px)); padding: 0; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 22px 70px #1b2b2430; }
 .student-dialog::backdrop { background: #1b2923a6; backdrop-filter: blur(2px); }
 .student-dialog form { padding: 25px; }
@@ -298,6 +314,7 @@ tbody tr:hover { background: #fbfcfa; }
   .page-header h1 { font-size: 25px; }
   .page-subtitle { max-width: 230px; line-height: 1.5; }
   .page-header > .button { min-height: 37px; padding: 0 10px; font-size: 11px; }
+  .desktop-download { align-items: flex-start; flex-direction: column; margin-top: 18px; padding: 14px; }
   .stats { gap: 8px; margin: 22px 0 18px; }
   .stat { min-height: 100px; padding: 13px 11px; }
   .stat-label { font-size: 10px; }

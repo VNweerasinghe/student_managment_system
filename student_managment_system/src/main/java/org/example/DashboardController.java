@@ -89,7 +89,7 @@ public class DashboardController {
 		addColumn("Phone", "phone", 120);
 		addColumn("Course", "course", 160);
 		addColumn("Status", "status", 110);
-		studentsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		studentsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 	}
 
 	private void addColumn(String title, String property, double minimumWidth) {

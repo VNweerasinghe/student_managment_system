@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="760.0" prefWidth="1180.0" styleClass="app-root" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.DashboardController">
+<BorderPane prefHeight="760.0" prefWidth="1180.0" styleClass="app-root" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.DashboardController">
     <left>
         <VBox prefWidth="218.0" spacing="22.0" styleClass="sidebar">
             <padding>

@@ -1,0 +1,32 @@
+name: Desktop app CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "student_managment_system/**"
+      - ".github/workflows/desktop-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "student_managment_system/**"
+      - ".github/workflows/desktop-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+      - name: Build and test
+        run: mvn --batch-mode --no-transfer-progress -f student_managment_system/pom.xml clean verify
