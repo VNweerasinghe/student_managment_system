@@ -21,8 +21,8 @@ mvn -f student_managment_system/pom.xml javafx:run
 Create and push a version tag to build self-contained desktop packages for Windows, Linux, and macOS:
 
 ```powershell
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.0.1
+git push origin v1.0.1
 ```
 
 The release workflow runs the tests, packages the app with its Java runtime, and attaches the platform-specific downloads to the GitHub Release. The Pages site links to the latest release.
